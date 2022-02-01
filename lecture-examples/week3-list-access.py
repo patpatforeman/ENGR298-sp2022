@@ -15,8 +15,8 @@ for i in range(0,len(new_list)):
     print(new_list[i])
 
 # do it this way...
-for i in new_list:
-    print(i)
+for element in new_list:
+    print(element)
 
 
 

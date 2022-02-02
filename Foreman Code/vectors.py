@@ -16,8 +16,11 @@ def generate_random_int_list(list_length, upper_bound):
 a = [3, 1, -2, 7, 0]
 b = [9, 2, 4, 0, 8]
 
+# Define Dot Product Initial Value, Establish Range for Dot Product
 dot_product = 0
 part_1_length = len(a)
+
+# Iterate through range and add values together
 for i in range(part_1_length):
     dot_product += a[i] * b[i]
 
@@ -31,7 +34,7 @@ fixed_length = int(random.uniform(2, max_length))
 a = generate_random_int_list(fixed_length, maximum_value)
 b = generate_random_int_list(fixed_length, maximum_value)
 
-# student code
+# Same as before, with new length
 dot_product = 0
 length_vectors = len(a)
 for i in range(length_vectors):
@@ -42,10 +45,10 @@ a_np = np.asarray(a)
 b_np = np.asarray(b)
 
 # use dot product from numpy to check this result
-correct = np.dot(a_np,b_np)
+correct = np.dot(a_np, b_np)
 error = correct-dot_product
 
 # compare results
 print("Your result: ", dot_product)
-print("Correct result: ",correct)
-print("Error: ",error)
+print("Correct result: ", correct)
+print("Error: ", error)

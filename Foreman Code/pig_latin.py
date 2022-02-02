@@ -1,4 +1,5 @@
 # helpful function to see if word starts with vowel
+# added case for capital I in vowel function
 def starts_with_vowel(word):
     if word[0] == 'a' or word[0] == 'e' \
             or word[0] == 'i' or word[0] == 'o' or word[0] == 'u' or word[0] == 'I' :
@@ -17,7 +18,8 @@ words = sentence.split(" ")
 pig_latin=list()
 
 # iterate through words in sentence
-
+# created if statements in a for loop that account for
+# pig latin rules using splicing and appending
 for i in words:
     if starts_with_vowel(i) == True:
         i += 'way'

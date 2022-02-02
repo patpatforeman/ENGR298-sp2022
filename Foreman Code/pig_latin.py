@@ -21,7 +21,9 @@ pig_latin=list()
 # created if statements in a for loop that account for
 # pig latin rules using splicing and appending
 for i in words:
-    if starts_with_vowel(i) == True:
+    if len(i) == 3 or len(i) < 3:
+        pig_latin.append(i)
+    elif starts_with_vowel(i) == True:
         i += 'way'
         pig_latin.append(i)
     else:

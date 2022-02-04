@@ -12,10 +12,9 @@ def calculate_pi(de):
     t = 1 / 4
     p = 1
     approx = 0
-    loop = range(10000)
 
-    # Create a loop to iterate through ten times
-    for i in loop:
+    # Create a loop to iterate through until condition is met
+    while True:
         a_n = ((a + b) / 2)
         b_n = ((b * a) ** (1 / 2))
         t_n = t - p * ((a - a_n) ** 2)

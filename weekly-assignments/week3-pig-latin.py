@@ -1,5 +1,8 @@
 # helpful function to see if word starts with vowel
 def starts_with_vowel(word):
+    # make word lower case
+    word = word.lower()
+
     if word[0] == 'a' or word[0] == 'e' \
             or word[0] == 'i' or word[0] == 'o' or word[0] == 'u':
         return True

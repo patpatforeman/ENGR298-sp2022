@@ -20,6 +20,8 @@ c = np.array(ekg_data[:, 2])
 fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.plot(a, c, color='pink', linewidth=1)
+ax.plot(a, b, color='lightblue', linewidth=1)
+plt.xlim([0, 10])
 ax.set(title='EKG Data',
        ylabel='Voltage (mV)',
        xlabel='Time (s)')

@@ -45,7 +45,8 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.plot(a, difference_b, color='lightblue', linewidth=1)
 ax.plot(a, difference_c, color='pink', linewidth=1)
-ax.set(title='EKG Data 1st Step',
+plt.xlim([0, 10])
+ax.set(title='EKG Data Differentiated',
        ylabel='Voltage (mV)',
        xlabel='Time (s)')
 plt.show()
@@ -55,7 +56,8 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.plot(a, square_b, color='lightblue', linewidth=1)
 ax.plot(a, square_c, color='pink', linewidth=1)
-ax.set(title='EKG Data 2nd Step',
+plt.xlim([0, 10])
+ax.set(title='EKG Data Squared',
        ylabel='Voltage (mV)',
        xlabel='Time (s)')
 plt.show()
@@ -64,7 +66,9 @@ plt.show()
 fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.plot(a, mov_avgc, color='pink', linewidth=1)
-ax.set(title='EKG Data Final Step',
+ax.plot(a, mov_avgb, color='lightblue', linewidth=1)
+plt.xlim([0, 10])
+ax.set(title='EKG Data Moving Average',
        ylabel='Voltage (mV)',
        xlabel='Time (s)')
 plt.show()

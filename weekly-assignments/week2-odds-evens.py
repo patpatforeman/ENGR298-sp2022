@@ -14,11 +14,27 @@ def generate_random_int_list(max_length, upper_bound):
     return vars
 
 
-# generate two random lists of integers
-max_length = 100; upper_bound=1000000
-nums = generate_random_int_list(max_length, upper_bound)
+def main(random_list):
+    # variable to hold the odd or even count
+    # do not modify their names
+    num_even = 0
+    num_odd = 0
 
-# see how long this list is
-print("The list contains "+str(len(nums))+" values total.")
+    ###### Your code begins here #####
 
-###### Your code begins here #####
+    # do not modify this line
+    return (num_even, num_odd)
+
+
+if __name__ == "__main__":
+    # generate two random lists of integers
+    max_length = 20
+    upper_bound = 100
+    nums = generate_random_int_list(max_length, upper_bound)
+
+    # pass the random list to the student main
+    (odd, even) = main(nums)
+
+    # print out the list and see the results
+    print("You were sent the list: ", nums)
+    print("Your solution reported ", odd, " odd values and ", even, "even values.")

@@ -20,14 +20,14 @@ def main(random_list):
     num_even = 0
     num_odd = 0
 
-    for i in nums:
+    for i in random_list:
         if i % 2 == 0:
             num_even += 1
         else:
             num_odd += 1
 
     # do not modify this line
-    return (num_even, num_odd)
+    return (num_odd, num_even)
 
 
 if __name__ == "__main__":

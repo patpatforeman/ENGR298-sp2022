@@ -27,7 +27,7 @@ def main(random_list):
             num_odd += 1
 
     # do not modify this line
-    return (num_odd, num_even)
+    return (num_even, num_odd)
 
 
 if __name__ == "__main__":

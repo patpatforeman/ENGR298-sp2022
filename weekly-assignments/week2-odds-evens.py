@@ -33,7 +33,7 @@ if __name__ == "__main__":
     nums = generate_random_int_list(max_length, upper_bound)
 
     # pass the random list to the student main
-    (odd, even) = main(nums)
+    (even, odd) = main(nums)
 
     # print out the list and see the results
     print("You were sent the list: ", nums)

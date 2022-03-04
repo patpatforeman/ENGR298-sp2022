@@ -65,7 +65,7 @@ if __name__ == "__main__":
     print_debug = True
 
     # set to true if you wish to show a plot of each detection process
-    show_plot = True
+    show_plot = False
 
     ### DO NOT MODIFY BELOW THIS LINE!!! ###
 

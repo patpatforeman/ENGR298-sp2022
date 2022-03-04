@@ -40,10 +40,14 @@ def main(list_A, list_B):
         top_B += ((i - mean_B) ** 2)
         st_dev_B = ((top_B / len(list_B)) ** 0.5)
 
-    if st_dev_B >= st_dev_A:
+    if st_dev_B > st_dev_A:
         largest_list = list_B
     elif st_dev_A > st_dev_B:
         largest_list = list_A
+    elif st_dev_B == 0:
+        largest_list = list_A
+    elif st_dev_A == 0:
+        largest_list = list_B
 
     # do not modify this line
     return largest_list

@@ -35,10 +35,10 @@ def main(list_A, list_B):
     # Create loops that generate the standard deviation for each list
     for i in list_A:
         top_A += ((i - mean_A) ** 2)
-        st_dev_A = ((top_A / len(A)) ** 0.5)
+        st_dev_A = ((top_A / len(list_A)) ** 0.5)
     for i in list_B:
         top_B += ((i - mean_B) ** 2)
-        st_dev_B = ((top_B / len(B)) ** 0.5)
+        st_dev_B = ((top_B / len(list_B)) ** 0.5)
 
     if st_dev_B >= st_dev_A:
         largest_list = list_A

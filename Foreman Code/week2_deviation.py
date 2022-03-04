@@ -27,7 +27,6 @@ def main(list_A, list_B):
     # depending on which one you find, set it equal to "largest_list"
     largest_list = []
 
-
     # Create loops that generate the standard deviation for each list
     for i in list_A:
         if list_A == []:
@@ -46,14 +45,14 @@ def main(list_A, list_B):
             top_B += ((i - mean_B) ** 2)
             st_dev_B = ((top_B / len(list_B)) ** 0.5)
 
-    if list_A == []:
-        largest_list = list_B
-    if list_B == []:
-        largest_list = list_A
-    if st_dev_B > st_dev_A:
-        largest_list = list_B
-    if st_dev_A > st_dev_B:
-        largest_list = list_A
+        if list_A == []:
+            largest_list = list_B
+        if list_B == []:
+            largest_list = list_A
+        if st_dev_B > st_dev_A:
+            largest_list = list_B
+        if st_dev_A > st_dev_B:
+            largest_list = list_A
 
     # do not modify this line
     return largest_list

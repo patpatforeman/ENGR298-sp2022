@@ -41,11 +41,11 @@ def main(list_A, list_B):
         st_dev_B = ((top_B / len(B)) ** 0.5)
 
     if A > B:
-        largest_list = A
+        largest_list = st_dev_A
     elif B > A:
-        largest_list = B
+        largest_list = st_dev_B
     else:
-        largest_list = A
+        largest_list = st_dev_A
 
     # do not modify this line
     return largest_list

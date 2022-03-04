@@ -25,7 +25,7 @@ def main(random_list):
     evens_list = []
     odds_list = []
 
-    for i in nums:
+    for i in random_list:
         if i % 2 == 0:
             evens_list.append(i)
         else:

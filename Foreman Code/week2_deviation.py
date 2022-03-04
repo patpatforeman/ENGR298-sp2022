@@ -25,7 +25,7 @@ def main(list_A, list_B):
 
     # iterate through each list and determine which one has the largest value
     # depending on which one you find, set it equal to "largest_list"
-
+    largest_list = []
 
     top_A = 0
     mean_A = sum(list_A) / len(list_A)
@@ -40,12 +40,10 @@ def main(list_A, list_B):
         top_B += ((i - mean_B) ** 2)
         st_dev_B = ((top_B / len(B)) ** 0.5)
 
-    if A > B:
-        largest_list = st_dev_A
-    elif B > A:
-        largest_list = st_dev_B
+    if st_dev_B >= st_dev_A:
+        largest_list = list_A
     else:
-        largest_list = st_dev_A
+        largest_list = list_B
 
     # do not modify this line
     return largest_list

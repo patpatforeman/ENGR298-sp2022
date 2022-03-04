@@ -12,10 +12,12 @@ def main(filepath):
     path = filepath
 
     # load data in matrix from CSV file; skip first two rows
-    ## your code here
+    ekg_data = np.loadtxt(path, skiprows=2, delimiter=',')
 
     # save each vector as own variable
-    ## your code here
+    a = np.array(ekg_data[:, 0])
+    b = np.array(ekg_data[:, 1])
+    c = np.array(ekg_data[:, 2])
 
     # pass data through LOW PASS FILTER (OPTIONAL)
     ## your code here
@@ -24,21 +26,27 @@ def main(filepath):
     ## your code here
 
     # pass data through differentiator
-    ## your code here
+    diff_b = np.diff(b)
+    diff_c = np.diff(c)
+
+    difference_b = np.insert(diff_b, [0], [0])
+    difference_c = np.insert(diff_c, [0], [0])
 
     # pass data through square function
-    ## your code here
+    square_b = np.square(difference_b)
+    square_c = np.square(difference_c)
 
     # pass through moving average window
-    ## your code here
+    mov_avgb = np.convolve(square_b, 1)
+    mov_avgc = np.convolve(square_c, 1)
 
     # take the output of the moving average and save it to 'signal' to it can be passed
     # back to the testbench
-    signal = -1
+    signal = mov_avgc
 
     # use find_peaks to identify peaks within averaged/filtered data
     # save the peaks result and return as part of testbench result
-    peaks = -1 ## your code here
+    peaks, _ = find_peaks(mov_avgc, distance=93, height=.013)
 
     # do not modify this line
     return signal, peaks
@@ -47,11 +55,11 @@ def main(filepath):
 # when running this file directly, this will execute first
 if __name__ == "__main__":
 
-    #database name
-    database_name='mitdb_213'
+    # database name
+    database_name = 'mitdb_219'
 
     # set to true if you wish to generate a debug file
-    file_debug = True
+    file_debug = False
 
     # set to true if you wish to print overall stats to the screen
     print_debug = True
@@ -62,14 +70,14 @@ if __name__ == "__main__":
     ### DO NOT MODIFY BELOW THIS LINE!!! ###
 
     # path to ekg folder
-    path_to_folder="../data/ekg/"
+    path_to_folder = "../data/ekg/"
 
     # select a signal file to run
     signal_filepath = path_to_folder+database_name+".csv"
 
     # call main() and run against the file. Should return the filtered
     # signal and identified peaks
-    (signal,peaks)=main(signal_filepath)
+    (signal, peaks) = main(signal_filepath)
 
     # matched is a list of (peak, annotation) pairs; unmatched is a list of peaks that were
     # not matched to any annotation; and remaining is annotations that were not matched.

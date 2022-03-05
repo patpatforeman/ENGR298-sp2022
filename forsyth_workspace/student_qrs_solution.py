@@ -1,7 +1,8 @@
 import numpy as np
-from scipy.signal import find_peaks
+from scipy.signal import find_peaks, butter, lfilter
+import matplotlib.pyplot as plt
 from ekg_testbench import EKGTestBench
-
+import statistics
 
 def main(filepath):
     if filepath == '':
@@ -18,15 +19,29 @@ def main(filepath):
     b = np.array(ekg_data[:, 1])
     c = np.array(ekg_data[:, 2])
 
-    # pass data through LOW PASS FILTER (OPTIONAL)
-    ## your code here
+    # Bandpass Code
+    def butter_bandpass(lowcut, highcut, fs, order=5):
+        nyq = 0.5 * fs
+        low = lowcut / nyq
+        high = highcut / nyq
+        m, n = butter(order, [low, high], btype='band')
+        return m, n
 
-    # pass data through HIGH PASS FILTER (OPTIONAL) to create BAND PASS result
-    ## your code here
+    def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
+        m, n = butter_bandpass(lowcut, highcut, fs, order=order)
+        y = lfilter(m, n, data)
+        return y
+
+    # Bandpass Parameters
+    fs = 5000.0
+    lowcut = 100.0
+    highcut = 1250.0
+
+    filtered_c = butter_bandpass_filter(c, lowcut, highcut, fs)
 
     # pass data through differentiator
     diff_b = np.diff(b)
-    diff_c = np.diff(c)
+    diff_c = np.diff(filtered_c)
 
     difference_b = np.insert(diff_b, [0], [0])
     difference_c = np.insert(diff_c, [0], [0])
@@ -45,7 +60,7 @@ def main(filepath):
 
     # use find_peaks to identify peaks within averaged/filtered data
     # save the peaks result and return as part of testbench result
-    peaks, _ = find_peaks(mov_avgc, distance=93, height=.013)
+    peaks, _ = find_peaks(mov_avgc, distance=80, height=(statistics.mean(signal))*8)
 
     # do not modify this line
     return signal, peaks
@@ -55,7 +70,7 @@ def main(filepath):
 if __name__ == "__main__":
 
     # database name
-    database_name = 'mitdb_219'
+    database_name = 'QTDB_sel104'
 
     # set to true if you wish to generate a debug file
     file_debug = False

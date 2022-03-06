@@ -60,7 +60,7 @@ def main(filepath):
 
     # use find_peaks to identify peaks within averaged/filtered data
     # save the peaks result and return as part of testbench result
-    peaks, _ = find_peaks(mov_avgc, distance=80, height=(statistics.mean(signal))*8)
+    peaks, _ = find_peaks(mov_avgc, distance=80, height=(statistics.mean(signal))*12)
 
     # do not modify this line
     return signal, peaks
@@ -70,7 +70,7 @@ def main(filepath):
 if __name__ == "__main__":
 
     # database name
-    database_name = 'QTDB_sel104'
+    database_name = 'qtdb_sel104'
 
     # set to true if you wish to generate a debug file
     file_debug = False

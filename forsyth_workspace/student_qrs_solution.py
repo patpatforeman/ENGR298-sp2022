@@ -32,7 +32,7 @@ def main(filepath):
         return y
 
     # Bandpass Parameters
-    fs = 330.0
+    fs = 5000.0
     lowcut = 100.0
     highcut = 1250.0
 
@@ -59,7 +59,7 @@ def main(filepath):
 
     # use find_peaks to identify peaks within averaged/filtered data
     # save the peaks result and return as part of testbench result
-    peaks, _ = find_peaks(mov_avgc, distance=80, height=(statistics.mean(signal))*8)
+    peaks, _ = find_peaks(mov_avgc, distance=80, height=(statistics.mean(signal))*9)
 
     # do not modify this line
     return signal, peaks

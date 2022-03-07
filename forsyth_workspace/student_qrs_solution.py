@@ -32,7 +32,7 @@ def main(filepath):
         return y
 
     # Bandpass Parameters
-    fs = 5000.0
+    fs = 330.0
     lowcut = 100.0
     highcut = 1250.0
 

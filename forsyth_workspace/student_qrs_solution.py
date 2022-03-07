@@ -68,7 +68,7 @@ def main(filepath):
 
 # when running this file directly, this will execute first
 if __name__ == "__main__":
-
+    import matplotlib.pyplot as plt
     # database name
     database_name = 'mitdb_219'
 

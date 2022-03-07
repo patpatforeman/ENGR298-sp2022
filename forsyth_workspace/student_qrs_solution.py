@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.signal import find_peaks, butter, lfilter
-import matplotlib.pyplot as plt
 from ekg_testbench import EKGTestBench
 import statistics
 

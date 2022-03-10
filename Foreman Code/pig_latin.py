@@ -45,7 +45,7 @@ def main(sentence):
         # starts with vowel, modify accordingly and put in list
         elif starts_with_vowel(word) == True:
             # modify the word and place in pig_latin list
-            word += 'way'
+            word += 'vay'
             pig_latin.append(word)
             continue
 

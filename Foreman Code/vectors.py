@@ -11,44 +11,64 @@ def generate_random_int_list(list_length, upper_bound):
     return randoms
 
 
-# Part 1: Do this with a vector of known length
-# create 2x 3-element vectors
-a = [3, 1, -2, 7, 0]
-b = [9, 2, 4, 0, 8]
+def dot_product(listA, listB):
+    """
+    Calculate the dot product of two lists containing integers
+    :param listA: A list of integers
+    :param listB: B list of integers
+    :return: The dot product result (a1*b1)+(a2*b2)+(...,...)
+    """
+    if len(listA) != len(listB):
+        print("Lists are two different lengths! You did something wrong!")
 
-# Define Dot Product Initial Value, Establish Range for Dot Product
-dot_product = 0
-part_1_length = len(a)
+    # make a variable to hold the result from the dot product
+    total = 0
 
-# Iterate through range and add values together
-for i in range(part_1_length):
-    dot_product += a[i] * b[i]
+    # loop through both lists and calculate the dot product
+    for i in range(len(listA)):
+        total += listA[i] * listB[i]
 
-# result should be 21
-print(dot_product)
+    # return the variable. Do not modify this line
+    return total
 
-# Part 2: Now, deal with arrays of unknown length
-max_length = 1000
-maximum_value = 1000000
-fixed_length = int(random.uniform(2, max_length))
-a = generate_random_int_list(fixed_length, maximum_value)
-b = generate_random_int_list(fixed_length, maximum_value)
 
-# Same as before, with new length
-dot_product = 0
-length_vectors = len(a)
-for i in range(length_vectors):
-    dot_product += a[i] * b[i]
+if __name__ == "__main__":
+    # Part 1: Do this with a vector of known length
+    # create 2x 3-element vectors
+    a = [3, 1, -2, 7, 0]
+    b = [9, 2, 4, 0, 8]
 
-# check code with numpy...
-a_np = np.asarray(a)
-b_np = np.asarray(b)
+    # calculate the dot product of two lists
+    result = dot_product(a, b)
 
-# use dot product from numpy to check this result
-correct = np.dot(a_np, b_np)
-error = correct-dot_product
+    # result should be 21
+    print("Performing dot product of listA: ", a, " and listB: ", b)
+    print("Result is: ", result)
 
-# compare results
-print("Your result: ", dot_product)
-print("Correct result: ", correct)
-print("Error: ", error)
+    # Part 2: Now, deal with arrays of unknown length
+    max_length = 10
+    maximum_value = 100
+    fixed_length = int(random.uniform(2, max_length))
+    a = generate_random_int_list(fixed_length, maximum_value)
+    b = generate_random_int_list(fixed_length, maximum_value)
+
+    # calculate the dot product of two lists
+    result = dot_product(a, b)
+
+    # result should be 21
+    print("Performing dot product of:)")
+    print("List A:", a)
+    print("List B:", b)
+
+    # check code with numpy...
+    a_np = np.asarray(a)
+    b_np = np.asarray(b)
+
+    # use dot product from numpy to check this result
+    correct = np.dot(a_np, b_np)
+    error = correct - result
+
+    # compare results
+    print("Your result: ", result)
+    print("Correct result: ", correct)
+    print("Error: ", error)

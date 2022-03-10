@@ -1,54 +1,57 @@
 import math
 
-def calculate_pi(de):
-    """
-    Returns a value for 𝜋 within a certain error bound.
 
-    :param de: Desired Error Limits for Generated Pi Value
-    """
-    # Set Initial Values
+def calculate_pi(target_error):
+    """ Implementation of Gauss–Legendre algorithm to approximate PI from https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorithm
+
+        :param target_error: Desired error for PI estimation
+        :return: Approximation of PI to specified error bound
+        """
+
+    # initialize all the algorithm constants
     a = 1
     b = 1 / (2 ** (1 / 2))
     t = 1 / 4
     p = 1
-    approx = 0
 
-    # Create a loop to iterate through until condition is met
-    while True:
+    # keep track of current approximation and error
+    approx = 0
+    current_error = 100
+
+    # loop while your current error is larger than the target
+    while abs(current_error) > target_error:
+        # calculate next state variables
         a_n = ((a + b) / 2)
         b_n = ((b * a) ** (1 / 2))
         t_n = t - p * ((a - a_n) ** 2)
         p_n = (2 * p)
 
-        # This Section gives me my pi approximation and the percent difference between my pi
-        # and Python's pi
+        # calculate approximation
         approx = ((a_n + b_n) ** 2) / (4 * t_n)
-        error = (abs((approx - math.pi) / math.pi)) * 100
 
-        # This simply appends the initial values to the final values to increase accuracy through the loop
+        # update state variables for the next iteration
         a = a_n
         b = b_n
         t = t_n
         p = p_n
 
-        # Breakout Condition
-        if error > de or error == de:
-            continue
-        else:
-            break
+        # determine error
+        current_error = math.pi - approx
+
     return approx
 
-# main (body) here to call your function. Do not modify below this line
-desired_error = 1E-10
 
+if __name__ == "__main__":
+    # main (body) here to call your function. Do not modify below this line
+    desired_error = 1E-10
 
-approximation = calculate_pi(desired_error)
+    approximation = calculate_pi(desired_error)
 
-print("Solution returned PI=", approximation)
+    print("Solution returned PI=", approximation)
 
-error = abs(math.pi - approximation)
+    error = abs(math.pi - approximation)
 
-if error < abs(desired_error):
-    print("Solution is acceptable")
-else:
-    print("Solution is not acceptable")
+    if error < abs(desired_error):
+        print("Solution is acceptable")
+    else:
+        print("Solution is not acceptable")

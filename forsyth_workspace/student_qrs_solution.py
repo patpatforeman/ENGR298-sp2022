@@ -59,10 +59,7 @@ def main(filepath):
 
     # use find_peaks to identify peaks within averaged/filtered data
     # save the peaks result and return as part of testbench result
-    if database_name == 'nstdb_118e00':
-        peaks, _ = find_peaks(mov_avgc, distance=137.9, height=(statistics.mean(signal))*2.42)
-    else:
-        peaks, _ = find_peaks(mov_avgc, distance=137.9, height=(statistics.mean(signal)) * 2.42)
+    peaks, _ = find_peaks(mov_avgc, distance=137.9, height=(statistics.mean(signal)) * 2.42)
     # do not modify this line
     return signal, peaks
 

@@ -85,6 +85,8 @@ def main(full_path_to_file):
     for index in range(first_landing_index + 10, len(force_plate_list)):
 
         ### your code here ###
+        delete_me = 0
+
 
     # Step 4: The plate should remain near baseline while the user is in the air (there is no load).
     # Once it rises above the baseline again, the user has landed. Consider this the second landing.
@@ -100,6 +102,7 @@ def main(full_path_to_file):
     for index in range(take_off_index + 10, len(force_plate_list)):
 
         ### your code here ###
+        delete_me = 0
 
     # Step 5: calculate the time of contact on plate and time of flight in air
 

@@ -1,6 +1,7 @@
 import numpy as np
 import os
 import math
+import sys
 
 
 def parse_tensile_file(path_to_file):
@@ -62,8 +63,8 @@ def calculate_stress(force, sample_diameter):
     # calculate the cross-section area (mm^2)
     ### your code here ###
 
-    # calculate stress (MPa) from load (kN) and cross-sectional area
-    ### your code here ###
+    # delete this line and replace it with your own
+    stress = None
 
     return stress
 
@@ -79,11 +80,9 @@ def calculate_max_strength_strain(strain, stress):
     """
 
     # calculate the maximum stress experienced
-
-    ### put your calculation where -1 is ###
     ultimate_tensile_stress = -1
 
-    ### put your calculation where -1 is ###
+    # calculate the maximum strain experienced
     fracture_strain = -1
 
     return ultimate_tensile_stress, fracture_strain
@@ -101,33 +100,35 @@ def calculate_elastic_modulus(strain, stress):
     intercept: y-intercept for linear region best fit of strain/stress data
     """
 
-    # Step 3a: find the point that is 40% of max strain
+    # dummy variables to check that the values are implemented. These should be over-written by your
+    # code throughout this method
+    linear_index = -1
+    slope = -1
+    intercept = -1
 
-    ### put your calculation where -1 is ###
+    # Step 3a: find the point that is 40% of max strain
+    # replace the line below with your code to find the secant_strain
     secant_strain = -1
 
     # Step 3b: find the index closes to that 40%
     # take the diff of the whole array and use argmin to find the index where the closest
     # value occurs
 
-    ### your code below ###
-    diffs = np.abs()
+    # uncomment the line below and find the difference between stress and secant across all values
+    # diffs = np.abs(### your code here ###)
 
-    ### your code below ###
-    linear_index = np.argmin()
+    # uncomment the line below and use np.argmin on the diffs array to find the index/location of the closest point
+    #linear_index = np.argmin(### your code here ###)
 
     # Step 3c: down select to linear region for stress and strain using array slicing
-
-    ### put your calculation where -1 is ###
-    linear_stress = -1
-
-    ### put your calculation where -1 is ###
-    linear_strain = -1
+    # uncomment the lines below and use array slicing to select points between 0 and the linear index
+    # linear_stress = ### your code here ###
+    # linear_strain = ### your code here ###
 
     # Step 3d: find least squares fit to a line in the linear region
     # use 1-degree polynominal fit (line)
-    # replace 0 and 0 with approriate variables
-    slope, intercept = np.polyfit(0,0, 1)
+    # uncomment the line below and use np.polyfit to determine a best fit for the linear stress/strain regions
+    # slope, intercept = np.polyfit(### x array here ###, ### y array here ###, 1)
 
     return linear_index, slope, intercept
 
@@ -163,6 +164,10 @@ if __name__ == "__main__":
     # Step #1: Given the forces and sample diameter, calculate the strain
     stress = calculate_stress(force, sample_diameter)
 
+    if stress == None:
+        print("Error! No stress returned. Did you fill in the calculate_stress() method?")
+        sys.exit(-1)
+
     # use scatter plot so we don't assume a line (yet)
     plt.scatter(strain, stress, label="Stress - Strain")
     plt.xlabel('Strain (%)')
@@ -175,6 +180,11 @@ if __name__ == "__main__":
 
     # calculate easy variables
     ultimate_tensile_strength, fracture_strain = calculate_max_strength_strain(strain, stress)
+
+    if ultimate_tensile_strength==-1 or fracture_strain ==-1:
+        print("Error! Tensile Strength or Fracture Strain returned as -1. Did you complete the calculate_max_strength() method?")
+        sys.exit(-1)
+
     print("Ultimate Tensile Stress is ", ultimate_tensile_strength, "MPa")
     print("Fracture Strain is ", 100 * fracture_strain, " percent")
 
@@ -182,6 +192,10 @@ if __name__ == "__main__":
     # to determine elastic modulus
 
     linear_index, slope, intercept = calculate_elastic_modulus(strain, stress)
+
+    if linear_index==-1 or slope==-1 or intercept ==-1:
+        print("Error! You did not calculate the linear region or index correctly. Check the calculate_elastic_modulus() method.")
+        sys.exit(-1)
 
     print("Elastic Modulus is ", slope / 1000, 'GPa')
 

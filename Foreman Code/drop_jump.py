@@ -84,7 +84,8 @@ def main(full_path_to_file):
     for index in range(first_landing_index + 10, len(force_plate_list)):
 
         value = force_plate_list[index]
-        if value <= baseline:
+
+        if value < baseline + delta:
 
             take_off_index = index
 
@@ -127,7 +128,7 @@ def main(full_path_to_file):
     g = constants.g
 
     # RSI = (g*tf^2) / (8*tc)
-    RSI = ((g * (time_of_flight ** 2)) / (8 * time_of_contact))
+    RSI = ((g * np.square(time_of_flight)) / (8 * time_of_contact))
 
     ### Do not modify below this line ###
 

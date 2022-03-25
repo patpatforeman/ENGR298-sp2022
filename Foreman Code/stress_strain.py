@@ -108,27 +108,27 @@ def calculate_elastic_modulus(strain, stress):
 
     # Step 3a: find the point that is 40% of max strain
     # replace the line below with your code to find the secant_strain
-    secant_strain = -1
+    secant_stress = (max(stress) * 0.4)
 
     # Step 3b: find the index closes to that 40%
     # take the diff of the whole array and use argmin to find the index where the closest
     # value occurs
 
     # uncomment the line below and find the difference between stress and secant across all values
-    # diffs = np.abs(### your code here ###)
+    diffs = np.abs(stress - secant_stress)
 
     # uncomment the line below and use np.argmin on the diffs array to find the index/location of the closest point
-    #linear_index = np.argmin(### your code here ###)
+    linear_index = np.argmin(diffs)
 
     # Step 3c: down select to linear region for stress and strain using array slicing
     # uncomment the lines below and use array slicing to select points between 0 and the linear index
-    # linear_stress = ### your code here ###
-    # linear_strain = ### your code here ###
+    linear_stress = stress[0:linear_index]
+    linear_strain = strain[0:linear_index]
 
     # Step 3d: find least squares fit to a line in the linear region
     # use 1-degree polynominal fit (line)
     # uncomment the line below and use np.polyfit to determine a best fit for the linear stress/strain regions
-    # slope, intercept = np.polyfit(### x array here ###, ### y array here ###, 1)
+    slope, intercept = np.polyfit(linear_strain, linear_stress, 1)
 
     return linear_index, slope, intercept
 
@@ -164,7 +164,7 @@ if __name__ == "__main__":
     # Step #1: Given the forces and sample diameter, calculate the strain
     stress = calculate_stress(force, sample_diameter)
 
-    if stress == None:
+    if stress is None:
         print("Error! No stress returned. Did you fill in the calculate_stress() method?")
         sys.exit(-1)
 

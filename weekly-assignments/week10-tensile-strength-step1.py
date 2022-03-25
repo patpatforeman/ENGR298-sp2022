@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # Step #1: Given the forces and sample diameter, calculate the strain
     stress = calculate_stress(force, sample_diameter)
 
-    if stress == None:
+    if stress is None:
         print("Error! No stress returned. Did you fill in the calculate_stress() method?")
         sys.exit(-1)
 

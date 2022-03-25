@@ -60,13 +60,9 @@ def calculate_stress(force, sample_diameter):
     :return: An array of stresses experienced by the sample in Kilo Pascals (KPa)
     """
 
-    # calculate the cross-section area (mm^2)
-    ### your code here ###
+    ### YOUR SOLUTION FROM STEP 1 TEMPLATE HERE ###
 
-    # delete this line and replace it with your own
-    stress = None
-
-    return stress
+    return None
 
 
 def calculate_max_strength_strain(strain, stress):
@@ -79,25 +75,20 @@ def calculate_max_strength_strain(strain, stress):
     Fracture Strain: the maximum strain experienced before fracture
     """
 
-    # calculate the maximum stress experienced
-    ultimate_tensile_stress = -1
+    ### YOUR SOLUTION FROM STEP 2 TEMPLATE HERE ###
 
-    # calculate the maximum strain experienced
-    fracture_strain = -1
-
-    return ultimate_tensile_stress, fracture_strain
-
+    return -1, -1
 
 def calculate_elastic_modulus(strain, stress):
     """
-    Given a set of stress strain data, use the Secant Modulus at 40% method to determine
-    the elastic modulus
-    :param strain: An array of Strain data (MPa)
-    :param stress: An array of Strain data
-    :return:
-    linear_index: the index within the strain/stress data that is the end of the linear region
-    slope: the slope for the linear region of the strain/stress data
-    intercept: y-intercept for linear region best fit of strain/stress data
+        Given a set of stress strain data, use the Secant Modulus at 40% method to determine
+        the elastic modulus
+        :param strain:
+        :param stress:
+        :return:
+        linear_index: the index within the strain/stress data that is the end of the linear region
+        slope: the slope for the linear region of the strain/stress data
+        intercept: y-intercept for linear region best fit of strain/stress data
     """
 
     # dummy variables to check that the values are implemented. These should be over-written by your
@@ -118,7 +109,7 @@ def calculate_elastic_modulus(strain, stress):
     # diffs = np.abs(### your code here ###)
 
     # uncomment the line below and use np.argmin on the diffs array to find the index/location of the closest point
-    #linear_index = np.argmin(### your code here ###)
+    # linear_index = np.argmin(### your code here ###)
 
     # Step 3c: down select to linear region for stress and strain using array slicing
     # uncomment the lines below and use array slicing to select points between 0 and the linear index
@@ -131,7 +122,6 @@ def calculate_elastic_modulus(strain, stress):
     # slope, intercept = np.polyfit(### x array here ###, ### y array here ###, 1)
 
     return linear_index, slope, intercept
-
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
@@ -164,7 +154,7 @@ if __name__ == "__main__":
     # Step #1: Given the forces and sample diameter, calculate the strain
     stress = calculate_stress(force, sample_diameter)
 
-    if stress == None:
+    if stress is None:
         print("Error! No stress returned. Did you fill in the calculate_stress() method?")
         sys.exit(-1)
 
@@ -193,7 +183,7 @@ if __name__ == "__main__":
 
     linear_index, slope, intercept = calculate_elastic_modulus(strain, stress)
 
-    if linear_index==-1 or slope==-1 or intercept ==-1:
+    if linear_index == -1 or slope == -1 or intercept == -1:
         print("Error! You did not calculate the linear region or index correctly. Check the calculate_elastic_modulus() method.")
         sys.exit(-1)
 
@@ -225,3 +215,5 @@ if __name__ == "__main__":
 
     plt.legend()
     plt.show()
+
+

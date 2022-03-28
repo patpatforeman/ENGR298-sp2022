@@ -95,12 +95,6 @@ if __name__ == "__main__":
     # sample diameter (mm), time (s), displacement (mm), force (kN), and strain (%)
     sample_diameter, time, displacement, force, strain = parse_tensile_file(path_to_file)
 
-    #plt.scatter(strain,force,label="Force - Strain")
-    #plt.xlabel("Strain (%)")
-    #plt.ylabel("Force (kN)")
-    #plt.title("Force Applied and Resulting Strain")
-    #plt.show()
-
     # Step #1: Given the forces and sample diameter, calculate the strain
     stress = calculate_stress(force, sample_diameter)
 
@@ -110,7 +104,7 @@ if __name__ == "__main__":
 
     # use scatter plot so we don't assume a line (yet)
     plt.scatter(strain, stress, label="Stress - Strain")
-    plt.xlabel('Strain (%)')
+    plt.xlabel('Strain (mm/mm)')
     plt.ylabel('Stress (MPa)')
     plt.title('Stress-Strain Curve for Sample ' + sample_name)
     plt.show()

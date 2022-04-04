@@ -173,7 +173,7 @@ def generate_csv_file(filename, results):
 
     # Step 3: write out the header for the CSV file. This string is provided for you so
     # your data can be loaded and checked. Use write().
-    file_header = "Sample_Name,Materi al_Type,Tensile_Strength,Fracture_Strain,Elastic_Modulus,Yield_Strength\n"
+    file_header = "Sample_Name,Material_Type,Tensile_Strength,Fracture_Strain,Elastic_Modulus,Yield_Strength\n"
 
     # write header string out to file
     #file.### your code here ###

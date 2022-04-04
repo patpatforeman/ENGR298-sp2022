@@ -8,6 +8,7 @@ def parse_tensile_file(path_to_file):
     # required meta-data
     width = -1
     thickness = - 1
+    length = 2
     # determine when to begin reading into these files
     begin_reading = False
     time = []
@@ -53,12 +54,14 @@ def calculate_stress(width, thickness, load):
     """
 
     # calculate the stress (psi)
-    stress = (3 * 2 *(load * 0.224809)) / (2 * (width * 0.0393701) * ((thickness * 0.0393701) ** 2))
+    stress = (3 * 2 * (load * 0.224809)) / (2 * (width * 0.0393701) * ((thickness * 0.0393701) ** 2))
 
     return stress
 
-def calculate_strain(extension, length):
-    strain = (6 * (extension * 0.0393701) * (length * 0.0393701)) / (2 ** 2)
+def calculate_strain(extension, length, thickness):
+
+    strain_neg = (6 * (extension * 0.0393701) * (thickness * 0.0393701)) / (length ** 2)
+    strain = strain_neg
 
     return strain
 
@@ -77,7 +80,7 @@ def calculate_max_strength_strain(strain, stress):
     ultimate_tensile_stress = max(stress)
 
     # calculate the maximum strain experienced
-    fracture_strain = max(strain)
+    fracture_strain = max(strain) + abs(min(strain))
 
     return ultimate_tensile_stress, fracture_strain
 
@@ -129,23 +132,27 @@ def calculate_elastic_modulus(strain, stress):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    # modify this line to select different samples in the material folder
-    sample_name = "HCS"
+    # modify this line to select different materials/folders within tensile/
+    material_folder = "Materials Data"
 
+    # modify this line to select different samples in the material folder
+    sample_name = "K3"
 
     ### Do not modify below this line ###
 
     path_to_directory = "../Foreman Code/"
+    path_to_samples = path_to_directory + material_folder + "/"
 
     # manually parse file to get gage diameter and then calculate cross-sectional area
-    path_to_file = sample_name + ".csv"
+    path_to_file = path_to_samples + sample_name + ".csv"
 
     # Step #1: Parse the file ane return based values
     # sample diameter (mm), time (s), displacement (mm), force (kN), and strain (%)
     width, thickness, length, time, extension, load = parse_tensile_file(path_to_file)
 
     stress = calculate_stress(width, thickness, load)
-    strain = calculate_strain(extension, length)
+    strain = calculate_strain(extension, length, thickness)
+
 
     # use scatter plot so we don't assume a line (yet)
     plt.scatter(strain, stress, label="Stress - Strain")

@@ -176,7 +176,7 @@ def generate_csv_file(filename, results):
     file_header = "Sample_Name,Materi al_Type,Tensile_Strength,Fracture_Strain,Elastic_Modulus,Yield_Strength\n"
 
     # write header string out to file
-    file.write(file_header)
+    file.write(file_header, mode='w')
 
     # Step 4: Iterate through the list of results. Each sample will contain the data for an individual test
     for r in results:

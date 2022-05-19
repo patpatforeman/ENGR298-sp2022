@@ -2,6 +2,8 @@ import numpy as np
 import os
 import math
 import sys
+import tkinter as tk
+from tkinter.filedialog import askopenfilename
 
 
 def parse_tensile_file(path_to_file):
@@ -136,20 +138,10 @@ def calculate_elastic_modulus(strain, stress):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    # modify this line to select different materials/folders within tensile/
-    material_folder = "1045CR"
-
-    # modify this line to select different samples in the material folder
-    sample_name = "C01A1045CR_1"
-
-
-    ### Do not modify below this line ###
-
-    path_to_directory = "../data/tensile/"
-    path_to_samples = path_to_directory + material_folder + "/"
-
-    # manually parse file to get gage diameter and then calculate cross-sectional area
-    path_to_file = path_to_samples + sample_name + ".csv"
+    tk.Tk().withdraw()
+    path_to_file = askopenfilename()
+    sample = os.path.basename(path_to_file)
+    sample_name = sample.replace(".csv", "")
 
     # Step #1: Parse the file ane return based values
     # sample diameter (mm), time (s), displacement (mm), force (kN), and strain (%)

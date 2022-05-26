@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     # manually search data/ekg folder for CSV files as data
     # and txt files with annotations
-    directory = "../data/ekg/"
+    directory = "../data/ekg/challenge/"
     directory_path = os.path.dirname(directory)
 
     databases = list()
